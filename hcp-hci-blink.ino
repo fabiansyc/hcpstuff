@@ -4,7 +4,7 @@ int led2 = D3;
 
 int reading = 0;
 double volts = 0.0;
-int analogPin = A0;
+
 
 boolean HCPblink = false;
 
@@ -15,16 +15,11 @@ void setup()
    Particle.function("HCPSwitchLed",HCPledToggle);
    digitalWrite(led1, LOW);
    digitalWrite(led2, LOW);
-   
-    Spark.variable("analog", &reading, INT);
-    Spark.variable("volts", &volts, DOUBLE);
-
 }
 
 
 void loop()
 {
-    
    if (HCPblink) {
         digitalWrite(led1, HIGH);
         delay(200);
@@ -34,9 +29,6 @@ void loop()
         delay(200);
         digitalWrite(led2, LOW);
         delay(400);
-        
-        reading = analogRead(analogPin);
-        volts = reading * 3.3 / 4096.0;
     }
 }
 
